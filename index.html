@@ -7,7 +7,7 @@
     <title>Hydros Koya Thangal</title>
     <link rel="icon" href="https://tinyurl.com/2v56cj9s" type="image/gif" sizes="16x16">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <header class=bg-info style="position: fixed;width: 100%;z-index: 1;">
@@ -128,42 +128,63 @@
   </div>
 
 </section>
-<section section class="bg-secondary p-3"id="contact"style="align-items-center">
+<section section class="bg-secondary p-5"id="contact"style="align-items-center">
   <div class="container">
     <h3 class="text-center">Contact</h3>
     
-      <div class="col-2">
-        <form id="form" method="POST" action="https://script.google.com/macros/s/AKfycbwJyp_Q4_kPijD1GDeuu8_ggQWXCjCEG0u3U8z-mQ0wYH81tGZdzD7rtD6x4z8kQhm8/exec">
-          <div class="form-row">
-            <div class="form-group align-items-center">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Name">
-            </div>
-            <div class="form-group align-items-center">
-              <label for="plac">Place</label>
-              <input class="place" type="text" id="place" name="place" placeholder="Place">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group align-items-center">
-              <label for="email">Email</label>
-              <input class=email type="email" id="email" name="email" placeholder="Email">
-            </div>
-            <div class="form-group align-items-center">
-              <label for="mobile">Mobile</label>
-              <input class="mobile" type="tel" id="mobile" name="mobile" placeholder="Mobile">
-            </div>
-          </div>
-          <div class="form-group align-items-center">
-            <label for="message">Message</label>
-            <textarea class="message " id="message" name="message" cols="30" rows="10" placeholder="Type your message here.."></textarea>
+      <div class="col-md-12">
+        <form id="submit-form"   action="">
+
+              <div class="col-md-3">
+                  <div class="md-form">
+                      <label for="name" class="">Name</label>
+                      <input type="text" id="name" name="name" class="form-control" placeholder="Your name" onkeyup="nameValidate()" required>
+                      <p id="name-alert" style="color: red;"></p>
+                  </div>
+              </div>
+
+
+              <div class="col-md-3">
+                  <div class="md-form">
+                      <label for="email" class="email">Email address</label>
+                      <input type="email" id="email" name="email" class="form-control" placeholder="Enter your valid email address" onkeyup="emailValidate()" required>
+                   
+                      <p id="email-alert" style="color: red;"></p>
+                  </div>
+              </div>
+  
+
           </div>
       
+
+          
+              <div class="col-md-3">
+                  <div class="md-form">
+                      <label for="mobile" class="mobile">Mobile</label>
+                      <input type="tel" id="mobile" name="number" class="form-control" placeholder="contact number" onkeyup="numberValidate()" required>
+                   
+                      <p id="number-alert" style="color: red;"></p>
+                  </div>
+              </div>
+            
+
+       
+          <div class="row">
+
       
-          <div class="form-group align-items-center col-md-2\">
-         
-          <input type="submit" value="submit">
-        </div>
+              <div class="col-md-4">
+
+                  <div class="md-form">
+                      <label for="subject">Message</label>
+                      <textarea type="text" id="subject" name="message" rows="3" class="form-control md-textarea" placeholder="Enter your message here.." required></textarea>
+                      
+                      <br>
+                      <input type="submit" value="Submit">
+
+                  </div>
+
+              </div>
+          </div>
       </form>
       
       </div>
@@ -177,7 +198,7 @@
 </section>
 <footer class="bg-light">
   <div class="container">
-    <div class="col-md-12 text-center">
+    <div class="col-md-8 text-center">
       <a href="https://www.facebook.com/hydroskoyathangal.outlawz/">
       <i class="fab fa-facebook-square"></i></a>
       <a href="https://www.instagram.com/hydroskoyathangal/">
@@ -197,5 +218,80 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/66e6e8196a.js" crossorigin="anonymous"></script>
+<script>
+    
+  var flag1=0,flag2=0,flag3=0;
+
+
+     function emailValidate(){
+         var mailformat=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+         var email = document.getElementById("email").value;
+         var emailAlert= document.getElementById('email-alert');
+
+         if (mailformat.test(email)) {
+           flag1=1;
+            emailAlert.innerHTML="";
+         }
+         else{
+             flag1=0;
+            emailAlert.innerHTML="invalid email";
+         }
+     }
+     function nameValidate(){
+         var nameformat= /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/;
+         var name = document.getElementById("name").value;
+         var nameAlert= document.getElementById('name-alert');
+
+         if (nameformat.test(name)) {
+             flag2=1;
+            nameAlert.innerHTML="";
+         }
+         else{
+             flag2=0;
+            nameAlert.innerHTML="invalid name";
+         }
+     }
+     function numberValidate(){
+         var numberformat= /^\d{10}$/;
+         var number= document.getElementById("mobile").value;
+         var numberAlert= document.getElementById('number-alert');
+
+         if (numberformat.test(number)) {
+            flag3=1;
+            numberAlert.innerHTML="";
+         }
+         else{
+            flag3=0;
+            numberAlert.innerHTML="invalid number";
+         }
+     }
+
+
+   $("#submit-form").submit((e)=>{
+              e.preventDefault()
+              if(flag1==1 && flag2==1 && flag3==1) {
+                 $.ajax({
+                  url:"https://script.google.com/macros/s/AKfycbwIBxhDQxpYnC2wb3RzYaUVetrP9eaWHuS6duZ_Q3Avsv8DsuxC6XgY9ZMMlD06XTvB/exec",
+                  data:$("#submit-form").serialize(),
+                  method:"post",
+                     success:function (response){
+                      alert("Form submitted successfully")
+                         window.location.reload()
+                         //window.location.href="https://google.com"
+                 },
+                 error:function (err){
+                     alert("Error")
+     
+                 }
+             })
+            }
+            else{
+                alert("Form error")
+            }
+         })
+ 
+       </script>
+</script>
+
 </body>
 </html>
